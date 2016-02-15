@@ -133,6 +133,9 @@ endfunction "}}}
 " Migemo {{{
 function! EasyMotion#helper#load_migemo_dict() "{{{
     let enc = &l:encoding
+    if exists('g:EasyMotion_migemo_user_dicts') && has_key(g:EasyMotion_migemo_user_dicts, enc)
+        return g:EasyMotion_migemo_user_dicts[enc]
+    endif
     if enc ==# 'utf-8'
         return EasyMotion#migemo#utf8#load_dict()
     elseif enc ==# 'cp932'
